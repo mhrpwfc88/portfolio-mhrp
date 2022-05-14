@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="dist/output.css" rel="stylesheet" />
     <title>Portfolio-web</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <!-- header start -->
@@ -528,16 +527,16 @@
             </h2>
           </div>
         </div>
-        <form id="whatsapp">
+        <form action="">
           <div class="w-full lg:m-auto lg:w-2/3">
-            <input class="tujuan" type="hidden" id="noAdmin" />
             <div class="mb-8 w-full px-4">
               <label for="name" class="text-base font-bold text-primary"
                 >Nama</label
               >
               <input
                 type="text"
-                class="nama w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                id="name"
+                class="w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
             <div class="mb-8 w-full px-4">
@@ -546,7 +545,8 @@
               >
               <input
                 type="email"
-                class="email w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                id="name"
+                class="w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               />
             </div>
             <div class="mb-8 w-full px-4">
@@ -555,12 +555,13 @@
               >
               <textarea
                 type="text"
-                class="pesan h-32 w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+                id="name"
+                class="h-32 w-full rounded-md bg-slate-200 p-3 text-dark focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
               ></textarea>
             </div>
             <div class="w-full px-4">
               <button
-                class="submit w-full rounded-full bg-primary py-3 px-8 text-base font-semibold text-white transition duration-500 hover:opacity-80 hover:shadow-lg"
+                class="w-full rounded-full bg-primary py-3 px-8 text-base font-semibold text-white transition duration-500 hover:opacity-80 hover:shadow-lg"
               >
                 Kirim
               </button>
@@ -809,89 +810,7 @@
       <span class="mt-2 block h-5 w-5 rotate-45 border-t-2 border-l-2"></span>
     </a>
     <!-- back too End -->
+
     <script src="dist/js/script.js"></script>
-    <script>
-      //no wa admin
-      $("#noAdmin").val("6282192029353");
-      $(".whatsapp-btn").click(function () {
-        $("#whatsapp").toggleClass("toggle");
-      });
-      // Onclick Whatsapp Sent!
-      $("#whatsapp .submit").click(WhatsApp);
-      $("#whatsapp input, #whatsapp textarea").keypress(function () {
-        if (event.which == 13) WhatsApp();
-      });
-      var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
-      function WhatsApp() {
-        var ph = "";
-        if ($("#whatsapp .nama").val() == "") {
-          // Cek Nama
-          ph = $("#whatsapp .nama").attr("placeholder");
-          alert("Silahkan tulis " + ph);
-          $("#whatsapp .nama").focus();
-          return false;
-        } else if ($("#whatsapp .email").val() == "") {
-          // Cek Whatsapp
-          ph = $("#whatsapp .email").attr("placeholder");
-          alert("Silahkan tulis " + ph);
-          $("#whatsapp .email").focus();
-          return false;
-        } else if ($("#whatsapp .pesan").val() == "") {
-          // Cek Whatsapp
-          ph = $("#whatsapp .pesan").attr("placeholder");
-          alert("Silahkan tulis " + ph);
-          $("#whatsapp .pesan").focus();
-          return false;
-        } else {
-          // Check Device (Mobile/Desktop)
-          var url_wa = "https://web.whatsapp.com/send";
-          if (
-            /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-              navigator.userAgent
-            )
-          ) {
-            url_wa = "whatsapp://send/";
-          }
-          // Get Value
-          var tujuan = $("#whatsapp .tujuan").val(),
-            via_url = location.href,
-            nama = $("#whatsapp .nama").val(),
-            email = $("#whatsapp .email").val(),
-            pesan = $("#whatsapp .pesan").val();
-          $(this).attr(
-            "href",
-            url_wa +
-              "?phone=62 " +
-              tujuan +
-              "&text=Nama: " +
-              nama +
-              " %0AEmail: " +
-              email +
-              "%0APesan: " +
-              pesan +
-              " %0A%0Avia " +
-              via_url
-          );
-          var w = 960,
-            h = 540,
-            left = Number(screen.width / 2 - w / 2),
-            tops = Number(screen.height / 2 - h / 2),
-            popupWindow = window.open(
-              this.href,
-              "",
-              "toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=yes, resizable=1, copyhistory=no, width=" +
-                w +
-                ", height=" +
-                h +
-                ", top=" +
-                tops +
-                ", left=" +
-                left
-            );
-          popupWindow.focus();
-          return false;
-        }
-      }
-    </script>
   </body>
 </html>
